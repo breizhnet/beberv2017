@@ -1,69 +1,33 @@
-Symfony Standard Edition
-========================
+# Répertoire app
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
+Le répertoire app contient deux répertoires.
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+  - config
+  - Resources
 
-What's inside?
---------------
+## Répertoire config
 
-The Symfony Standard Edition is configured with the following defaults:
+Ce répertoire contient tous les fichiers de configurations des bundles/modules/plugins utilisés dans notre application. Les fichiers contenus dans ce répertoire ne doivent pas être modifiés.
 
-  * An AppBundle you can use to start coding;
+## Répertoire Resources
 
-  * Twig as the only configured template engine;
+Ce répertoire contient tous les fichiers nécessaires à la gestion des vues et traductions de notre application.
 
-  * Doctrine ORM/DBAL;
+  - FOSUserBundle
+Ce répertoire contient les vues ( views ) et traductions du bundle qui gère les utilisateurs.
+    - translations
+Ici vous trouverez deux types de fichiers. Les fichiers validators.LANGUE.yml contient les traductions des messages d'erreurs qui s'affichent lorsqu'on complète un formulaire ( champ username non rempli, adresse email invalide etc etc ) utilisé pour la gestion des utilisateurs ( formulaire de connexion, formulaire de modification du profil, formulaire de renouvellement de mot de passe etc etc ). Les fichiers FOSUserBundle.LANGUE.yml contient toutes les autres traductions liés à la gestion utilisateurs ( label de formulaire, bouton de formulaire, titre de page de connexion, titre de fenetre de connexion etc etc ).
+    - views
+Ici vous trouverez toutes les vues ( fichiers HTML ) utilisés pour la gestion utilisateur. Notre formulaire de connexion ( dans le répertoire sécurity ), page de profile utilisateur, etc etc. Ne vous formalisez pas sur l'extension .yml. En ouvrant les fichiers vous reconnaitrez les balises HTML que vous connaissez avec quelques variables supplémentaires ( ce qui remplace les <?php echo "toto" ?> par exemple )
+  - views
+Ici vous trouverez tous les autres fichiers utilisés pour  générer les vues des autres pages. J'ai divisé cela par habitude en deux sous-repertoires ( front contient les vues des pages publics de l'application, back contient les vues des pages admin - dans notre cas particulier ce seront les pages  pour nos commanditaires )
 
-  * Swiftmailer;
+# Répertoire src
+Ce répertoire contient le coeur de l'application. Par convention, sous Symfony, il est recommandé de créer des sous-répertoires ( AppBundle étant créé par défault ). Pour les grosses applications, on créera un sous-répertoire par "fonctionnalité" de l'application ( ex: si notre application contenait une gestion d'article, blog, on créerait un répertoire BlogBundle, pour une partie ecommerce, on créerait un répertoire EcommerceBundle etc ). Dans notre cas, tout le coeur de l'application sera dans AppBundle ).
+ - les détails des sous-répertoires de AppBundle seront rédigés  plus tard )
 
-  * Annotations enabled for everything.
+# Répertoire tests
+Comme son nom  l'indique, ce répertoire est utilisé pour créer des tests. Personnellement, je ne l'ai jamais utilisé.Bouh, pas bien, bla bla bla.
 
-It comes pre-configured with the following bundles:
-
-  * **FrameworkBundle** - The core Symfony framework bundle
-
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
-
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
-
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
-
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
-
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
-
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
-
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
-    capabilities
-
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  https://symfony.com/doc/3.2/setup.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/3.2/doctrine.html
-[8]:  https://symfony.com/doc/3.2/templating.html
-[9]:  https://symfony.com/doc/3.2/security.html
-[10]: https://symfony.com/doc/3.2/email.html
-[11]: https://symfony.com/doc/3.2/logging.html
-[12]: https://symfony.com/doc/3.2/assetic/asset_management.html
-[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
+# Répertoire web
+Ce répertoire contient tous les fichiers publics de l'application. ( les fichiers images, les fichiers css, fichiers js, fichiers fonts etc etc.). Je rajouterai au fur et à mesure le détail du contenu. A ce stade, rien de compliqué, il suffit de lire. =)
