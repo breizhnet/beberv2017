@@ -1,0 +1,32 @@
+
+{% trans_default_domain 'FOSUserBundle' %}
+{% block fos_user_content %}
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    <div class="w3-container w3-blue-grey">
+        <h2>{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</h2>
+    </div>
+    <form class="w3-container" action="{{ path("fos_user_security_check") }}" method="post">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+        <p>
+            <label  class="w3-label" for="username">{{ 'security.login.username'|trans }}</label>
+            <input class="w3-input w3-border w3-light-grey" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+        </p>
+
+        <p>
+            <label class="w3-label" for="password">{{ 'security.login.password'|trans }}</label>
+            <input class="w3-input w3-border w3-light-grey" type="password" id="password" name="_password" required="required" />
+        </p>
+
+        <p>
+            <input class="w3-check" type="checkbox" id="remember_me" name="_remember_me" value="on" />
+            <label class="w3-validate" for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+        </p>
+
+        <p>
+            <button class="w3-btn w3-blue-grey">{{ 'security.login.submit'|trans }}</button>
+        </p>
+    </form>
+{% endblock fos_user_content %}

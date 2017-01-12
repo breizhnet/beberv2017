@@ -1,0 +1,31 @@
+{# empty Twig template #}
+{# If method is not GET the langue switcher is hidden to prevent change the url on a post action #}
+
+
+{% set actualLangue = app.request.locale %}
+
+{% set routeParams = app.request.get('_route_params') %}
+
+  {% for langue in locales %} {# If you have a language referential you may call a controller to get all languages #}
+
+
+
+      {% if actualLangue == langue %}
+          <li class="w3-right">
+              <a href="" ><img src="{{ asset('img/flags/'~langue~'.png') }}" alt="flag-{{langue}}"/></a>
+          </li>
+      {% else %}
+
+          {% if routeParams['_locale'] is defined %}
+              {%set routeParams = routeParams|merge({'_locale': langue}) %}
+          {% endif %}
+
+          <li class="w3-right">
+              <a href="{{ path(app.request.get('_route'), routeParams) }}"><img src="{{ asset('img/flags/'~langue~'.png') }}" alt="flag-{{langue}}"/></a>
+          </li>
+
+      {% endif %}
+
+  {% endfor %}
+
+

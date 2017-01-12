@@ -1,0 +1,180 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    Home
+    {{ dump(locations) }}
+    <div class="mapcontainer">
+        <div class="map">Alternative content</div>
+    </div>
+
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/beberworld.js') }}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".mapcontainer").mapael({
+                map: {
+                    // Set the name of the map to display
+                    name: "beberworld",
+                    cssClass: "map",
+                    defaultArea: {
+                        attrs: {
+                            fill: "#4d636f",
+                            stroke: "#4d636f",
+                            "stroke-width": 1,
+                            "stroke-linejoin": "round"
+                        },
+                        attrsHover: {
+                            fill: "#0a69b7",
+                            stroke: "#ffffff",
+                            "stroke-width": 1,
+                            animDuration: 300
+                        },
+                        text: {
+                            attrs: {
+                                "font-size": 15,
+                                fill: "#c7c7c7"
+                            },
+                            attrsHover: {
+                                fill: "#eaeaea",
+                                "animDuration": 300
+                            }
+                        },
+                        target: "_self"
+                    }
+
+                },
+                plots: {
+                    // Image plot
+                    'atlantique': {
+                        type: "image",
+                        url: "{{ asset('img/mapicons/Linuxtux.gif') }}",
+                        width: 32,
+                        height: 32,
+                        latitude: 375,
+                        longitude: 190,
+                        attrsHover: {
+                            transform: "s1.5"
+                        }
+                    },
+                    'pacifique': {
+                        type: "image",
+                        url: "{{ asset('img/mapicons/Linuxtux.gif') }}",
+                        width: 32,
+                        height: 32,
+                        latitude: 150,
+                        longitude: 215,
+                        attrsHover: {
+                            transform: "s1.5"
+                        }
+                    },
+                    'artic': {
+                        type: "image",
+                        url: "{{ asset('img/mapicons/Linuxtux.gif') }}",
+                        width: 32,
+                        height: 32,
+                        latitude: 530,
+                        longitude: 10,
+                        attrsHover: {
+                            transform: "s1.5"
+                        }
+                    },
+                    'indien': {
+                        type: "image",
+                        url: "{{ asset('img/mapicons/Linuxtux.gif') }}",
+                        width: 32,
+                        height: 32,
+                        latitude: 710,
+                        longitude: 275,
+                        attrsHover: {
+                            transform: "s1.5"
+                        }
+                    },
+                    'pacificoss': {
+                        type: "image",
+                        url: "{{ asset('img/mapicons/Linuxtux.gif') }}",
+                        width: 32,
+                        height: 32,
+                        latitude: 910,
+                        longitude: 210,
+                        attrsHover: {
+                            transform: "s1.5"
+                        }
+                    },
+                },
+                areas: {
+                    "artic":{
+                        value: "{{ locations[1].temperature }}",
+                        href: "",
+                        text: {
+                            content: "{{ locations[1].name }}"
+                        },
+                        eventHandlers: {
+                            click: function (e, id, mapElem, textElem) {
+                                var newData = {
+                                    'areas': {}
+                                };
+                                if (mapElem.originalAttrs.stroke == "#4d636f") {
+                                    newData.areas[id] = {
+                                        attrs: {
+                                            stroke: "#990000",
+                                            "stroke-width": 2
+                                        }
+                                    };
+                                } else {
+                                    newData.areas[id] = {
+                                        attrs: {
+                                            stroke: "#4d636f"
+                                        }
+                                    };
+                                }
+                                $(".mapcontainer").trigger('update', [{mapOptions: newData}]);
+                            }
+
+                        }
+
+
+                    },
+                    "atlantic":{
+                        value: "{{ locations[4].temperature }}",
+                        href: "#",
+                        text: {
+                            content: "{{ locations[4].name }}"
+                        },
+
+                    },
+                    "indian":{
+                        value: "{{ locations[2].temperature }}",
+                        href: "#",
+                        text: {
+                            content: "{{ locations[2].name }}"
+                        },
+
+                    },
+                    "pacific":{
+                        value: "{{ locations[3].temperature }}",
+                        href: "#",
+                        text: {
+                            content: "{{ locations[3].name }}"
+                        },
+
+                    },
+                    "pacificossi":{
+                        value: "{{ locations[0].temperature }}",
+                        href: "#",
+                        text: {
+                            content: "{{ locations[0].name }}"
+                        },
+
+                    }
+
+                }
+            });
+        });
+    </script>
+
+{% endblock %}
+
+
