@@ -1,3 +1,13 @@
+<!--
+ Fichier squelette de l'appli :
+ On y ajoute le code html de ce qui est  commun à toutes les pages.
+ En général, il contiendra :
+ l'entête ( ou  header ) du site
+ le menu ( ou nav ) du site avec uniquement les liens communs à toutes les pages ( on peut imaginer qu'en fonction des droits de l utilisateur, des liens soient rajoutés ou que des liens  soient rajoutés sur certaines pages spécifiquees )
+ le corps ds ce fichier on se contente de créer le bloc  html qui contiendra tout le contenu du site( en général  on se contente  ici de fixer la largeur du bloc et sa position : cf  ligne 44-45 )
+ le pied de page (  ou footer ).
+ -->
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,17 +16,22 @@
         {% block stylesheets %}{% endblock %}
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3-theme-blue-grey.css">
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"><!-- Framework CSS W3.CSS doc : http://www.w3schools.com/w3css/ -->
+        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3-theme-blue-grey.css"><!-- même  framework mais ici il s agit juste d'un bibliothèque de couleur. Toutes les classes w3-theme-QQC sont des couleurs de polices ou d arriere plan -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"><!-- librairies CSS mettant à disposition une panoplie d'icone <i class=""></i> doc http://fontawesome.io/icons/ -->
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body class="w3-theme-l4">
+    <!-- bloc contenant le "module" de sélection de langue - espagnol, anglais ou français -->
     <div class="w3-container w3-theme-l5">
         <ul class="w3-navbar" id="langueswitcher">
             {% include('front/modules/langue_switcher.html.twig') %}
         </ul>
     </div>
+    <!-- bloc contenant l'entete du site : logo + nom du site par exemple -->
+    <header>
+        <h1>Entete du site</h1>
+    </header>
     <nav class="w3-container w3-theme-l5">
         <ul class="w3-navbar w3-content" style="max-width:1400px;">
             <li><a href="{{ path('homepage')}}"><i class="fa fa-home"></i></a></li>
@@ -29,6 +44,7 @@
             {% endif %}
         </ul>
     </nav>
+    <!-- bloc contenant le corps  du  site : {% block  body %}{% endblock %} se retrouvera donc sur tous les autres  fichiers pour savoir où sera affiché le contenu de ces fameux autres fichiers. Dans le cas de ce fichier, les "flashmessages" sont les messages qui s afficheront quand une connexion est réussie, quand un  béber a été créé, quand béber a démenagé bref tout les messages d erreur, informatif et réussite -->
     <div class="w3-container w3-theme-l4">
         <div class="w3-content w3-margin-top w3-margin-bottom" style="max-width:1400px;">
             {% if app.request.hasPreviousSession %}
@@ -53,7 +69,11 @@
             {% block body %}{% endblock %}
         </div>
     </div>
+    <footer>
+        pied de page
+    </footer>
     {% block javascripts %}
+        <!-- tous les fichiers framework Javascript ex jquery, les autres lib sont utilisés pour générer la map ou évoluera beber ( j'aurai pu les télécharger et les mettre ds le repertoire web ) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="http://cdn.sobekrepository.org/includes/jquery-mousewheel/3.1.3/jquery.mousewheel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.0/raphael-min.js"></script>
